@@ -44,23 +44,16 @@ class verben():
          df2.loc[slice(None),'objtype'] = 1 # 1 for dat
          df3 = pd.concat([df1, df2], axis=0)
          df3 = df3[pd.notnull(df3['b'])]
-         df3['form'] = 0     # define if getrennt or ungetrennt when ask
          df3['match'] = 0
          df = df3.reset_index()
-         df = df[df.columns[1:5]]
+         df = df[df.columns[1:6]]
 	 self.dafa = df
 	 self.german = self.dafa.a 
          self.index = self.dafa.index
-         self.form = self.dafa.form
 
      def randomindex(self):
          self.items = np.random.choice(range(len(self.index)), len(self.index), replace=False)    
 
-     def newform(self):
-         for i in range(len(self.index)):
-	     if re.search('-', self.german[i]):
-		 self.form[i] = 1
-   
 class adjandadv():       
      def __init__(self, df):
          df.columns = ['a', 'b']
@@ -73,13 +66,14 @@ class adjandadv():
 
 class dfresults():
      def __init__(self, df):
+	 print df
          self.dafa = df
          self.num = len(self.dafa.index)
-         self.match = self.dafa.match
+         self.match = df['match']
          
      def calculate(self):
-         right = self.match.tolist()
-         self.positive = right.count(1)
+         self.right = self.match.tolist()
+         self.positive = self.right.count(1)
          self.fraction = self.positive/self.num
          self.percentage = (self.positive*100)/self.num
 
@@ -97,15 +91,16 @@ if len(df.columns) == 2:
     # Get words randomly order
     mylist = adjandadv(df)
     mylist.randomindex()
+    finaldata = mylist.dafa
     ran = mylist.items
     for i in ran:
-        print "How would you say - %s - in german?"%mylist.dafa.b[i]
+        print "How would you say - %s - in german?"%finaldata.b[i]
         mya = raw_input("Please enter the answer: ")
-        if mya == mylist.dafa.a[i]:
+        if mya == finaldata.a[i]:
              print "Well done!"
-	     mylist.dafa.loc[i,'match'] = 1
+	     finaldata.loc[i,'match'] = 1
 	else:
-             print "Wrong! The answer was - %s -"%mylist.dafa.a[i] 
+             print "Wrong! The answer was - %s -"%finaldata.a[i] 
 
 
 elif len(df.columns) == 4:
@@ -115,38 +110,23 @@ elif len(df.columns) == 4:
     mylist = verben(df)
     mylist.randomindex()
     ran = mylist.items
+    finaldata = mylist.dafa
     for i in ran:
-        print "How would you say - %s - in german?"%mylist.dafa.b[i]
+        print "How would you say - %s - in german?"%finaldata.b[i]
         mya = raw_input("Please enter the answer: ")
         if mya == mylist.dafa.a[i]:
              print "Well done! You know the translation but... is it akkusative?"
 	     obj = raw_input("Please enter the answer (y/n): ")
-	     if obj == 'y' and mylist.dafa.objtype[i] == 0:
-                 print "Well done! You know the translation but... is it getrennt verb?"
-                 frm = raw_input("Please enter the answer (y/n): ")
-		 if frm == 'y' and mylist.dafa.form[i] == 0:
-                     print "Well done! You are getting better ;)"  
-                     mylist.dafa.loc[i,'match'] = 1
-                 elif frm == 'n' and mylist.dafa.form[i] == 1:
-                     print "Well done! You are getting better ;)"                           
-                     mylist.dafa.loc[i,'match'] = 1
-                 else:
-                     print "Wrong!"
-             elif obj == 'n' and mylist.dafa.objtype[i] == 1:
-                 print "Well done! You know the translation but... is it getrennt verb?"
-                 frm = raw_input("Please enter the answer (y/n): ")
-                 if frm == 'y' and mylist.dafa.form[i] == 0:
-                     print "Well done! You are getting better ;)"                           
-                     mylist.dafa.loc[i,'match'] = 1
-                 elif frm == 'n' and mylist.dafa.form[i] == 1:
-                     print "Well done! You are getting better ;)"
-                     mylist.dafa.loc[i,'match'] = 1
-                 else:
-                     print "Wrong!"
+	     if obj == 'y' and finaldata.objtype[i] == 0:
+                 print "Well done! You are getting better ;)"  
+                 finaldata.loc[i,'match'] = 1
+             elif obj == 'n' and finaldata.objtype[i] == 1:
+                 print "Well done! You are getting better ;)"                           
+                 finaldata.loc[i,'match'] = 1
              else:
-                     print "Wrong!"
+                 print "Wrong!"
         else:
-             print "Wrong! The answer was - %s -"%mylist.dafa.a[i]
+             print "Wrong! The answer was - %s -"%finaldata.a[i]
 
     
 elif len(df.columns) == 6:
@@ -156,30 +136,33 @@ elif len(df.columns) == 6:
     mylist = namen(df)
     mylist.randomindex()
     ran = mylist.items
+    finaldata = mylist.dafa
+    print ran
     for i in ran:
-        print "How would you say - %s - in german?"%mylist.dafa.b[i]
+        print "How would you say - %s - in german?"%finaldata.b[i]
         mya = raw_input("Please enter the answer: ")
-        if mya == mylist.dafa.a[i]:
+        if mya == finaldata.a[i]:
              print "Well done! You know the translation but what is its gender or location?"
              loc = raw_input("Please enter the answer (eKuche/rBalkon/sZimmer): ")
-             if loc == mylist.dafa.location[i]:
+             if loc == finaldata.location[i]:
                  print "Well done! You know the translation and the gender!"
-                 mylist.dafa.loc[i,'match'] = 1
+                 finaldata.loc[i,'match'] = 1
              else:
                      print "Wrong! Sorry, you have to learn also the gender of the Namen..."
         else:
-             print "Wrong! The answer was - %s -"%mylist.dafa.a[i]
+             print "Wrong! The answer was - %s -"%finaldata.a[i]
     
-# Get results 
-myres = dfresults(df)
+# Get results
+myres = dfresults(finaldata)
 myres.calculate()
 words = str(myres.num)
 fract = str(myres.fraction)
 perce = str(myres.percentage)
 date = str(dt.datetime.now().date())
+
 # Save the results of each quiz in results.csv
 fd = open('../results.csv','a')
-newrow = date+","+obje+","+words+","+fract+","+perce
+newrow = date+","+obje+","+words+","+fract+","+perce+"\n"
 fd.write(newrow)
 fd.close()
 
