@@ -1,10 +1,10 @@
 heben,alzar algo,gelegen_zu,estar orientado hacia o dar a 
-abziehen,descontar,heben_von,aumentar a algo o alguien
-vor-liegen,existir,zum_orientiert,orientar algo hacia algo
+abziehen,descontar,heben_von,levantar el nivel de
+vor-liegen,existir,orientiert_zum,orientar algo hacia algo
 enthalten,incluir algo en algo,stammen_aus,proceden de algo
 sich_enthalten,abstenerse,zusagen,agradar o convenir a alguien
 umgrenzen,delimitar una zona,ueberzeugen_von,convencer a alguien de algo
-fliesen,pavimentar,kuendigen,despedir a alguien
+fliesen,pavimentar,kuendigen,despedir a alguien (trabajo)
 abschaffen,suprimir,sich_bekennen_zu,comprometerse a algo
 behalten,quedarse con,entsprechen,corresponder con algo
 einschraenken,limitar,austreten_aus,retirarse de algo
@@ -13,7 +13,7 @@ vorlegen,presentar algo,umgehen_mit,tratar con alguien
 kuendigen,dimitir,zur_verfuegung_stehen,estar a disposicion de alguien
 gelten,estar en vigor,sich_streiten_mit,pelearse con alguien
 einlegen,conservar,ueberzeugt_sein_von,estar convencido de algo
-vor-schlagen,proponer,sich_vorstellen,imaginarse algo
+vor-schlagen,proponer,sich_vor-stellen,imaginarse algo
 ablehnen,negar algo,sich_bewusst_sein_ueber,ser consciente de algo
 beantragen,solicitar,bewundern_an,admirar
 sich_durchsetzen,imponerse,gehoeren_zu,ser o pertenecer a algo
@@ -28,7 +28,7 @@ verzichten_auf,prescindir de algo o alg,widersprechen,llevar a alguien la contra
 gruenden,fundar,ab-haengen_von,depender de algo o alguien
 beweisen,demostrar,aenderen_an,cambiar algo en alguien
 nachweisen,justificar,an-fangen_mit,comenzar con algo
-einfluss_haben_auf,tener influencia sobre algo,arbeiten_an,trabajar en algo
+einfluss_haben_auf,tener influencia sobre algo,arbeiten_in,trabajar en lugar
 beeinflussen,predisponer a alguien,arbeiten_bei,trabajar para alguien
 behindern,entorpecer algo o a algu,auf-hoeren_mit,dejar de hacer algo
 belasten,cargar algo (finanz) o agobiar a algu,sich_bedanken_bei,agradecer algo a alguien
@@ -57,10 +57,10 @@ vorwerfen,reprochar,helfen_bei,ayudar a alguien en algo
 gleichberechtigt_sein,tener los mismos derechos,leben_von,vivir de algo
 sich_entwickeln,desarrollarse,leiden_an,sufrir o padecer de algo (enfermedad)
 auf-wachsen,crecer para seres vivos,leiden_unter,padecer algo (problema externo)
-wachsen,crecer o aumentar en general,passen_zu,encajar con algo o alguien
+wachsen,crecer en general,passen_zu,encajar con algo o alguien
 sich_vorstellen,presentarse a alguien,rechnen_mit,preveer mediante un calculo
 sich_aus-druecken,expresarse,riechen_nach,oler a algo
-wagen,arriesgar,schimpfen_mit,despotricar de alguien
+wagen,arriesgar,schimpfen_mit,echar la bronca a alguien
 foerdern,fomentar algo,schmecken_nach,tener sabor a algo
 geschieden,dividir algo,sich_sehnen_nach,anhelar algo o alguien
 fremdgehen,ser infiel,sprechen_mit,hablar con alguien
@@ -70,17 +70,17 @@ heilen,curar a alguien,teil-nehmen_an,participar en algo
 entwerfen,diseniar,telefonieren_mit,hablar con alguien por telefono
 schmuecken,decorar,traeumen_von,soniar con algo o alguien
 einstellen,contratar a alguien o ajustar algo,ueberreden_zu,arrastrar o convencer a alguien para hacer algo
-betrachten,mirar algo,ueberzeugen_von,persuadir a alguien de/con algo
-besitzen,tener o poseer algo,sich_verabreden_mit,quedar con alguien
-sich_ergeben,entregarse o rendirse,verlangen_von,exigir algo de alguien
-sich_unterscheiden,distinguirse de algo o alguien,sich_vertragen_mit,congeniar con alguien
-sich_verstecken,esconderse ,waehlen_zu,ser elegido como algo
-auftreten,entrar en juego o manifestarse,warnen_vor,advertir a alguien de algo
-einrichten,amueblar,zwingen_zu,obligar a alguien a algo
-erhalten,obtener algo,auffordern_zu,convidar a alguien a algo
-mitteilen,compartir informacion con alguien de algo,sich_vornehmen,proponerse algo
-schmelzen,derretir algo,verzeihen,perdonar a alguien
-verstaerken,consolidar,spielen_mit,jugar con alguien
+betrachten,mirar algo,sich_verabreden_mit,quedar con alguien
+besitzen,tener o poseer algo,verlangen_von,exigir algo de alguien
+sich_ergeben,entregarse o rendirse,sich_vertragen_mit,congeniar con alguien
+sich_unterscheiden,distinguirse de algo o alguien,waehlen_zu,ser elegido como algo
+sich_verstecken,esconderse ,warnen_vor,advertir a alguien de algo
+auftreten,entrar en juego o manifestarse,zwingen_zu,obligar a alguien a algo
+einrichten,amueblar,auf-fordern_zu,convidar a alguien a algo
+erhalten,obtener algo,sich_vornehmen,proponerse algo
+mitteilen,compartir informacion con alguien de algo,verzeihen,perdonar a alguien
+schmelzen,derretir algo,spielen_mit,jugar con alguien
+verstaerken,consolidar,,
 stornieren,anular,,
 absagen,cancelar,,
 schuetzen,cobijar a alguien,,
@@ -111,7 +111,7 @@ wahr-nehmen,percibir o tener la sensacion de algo,,
 verbrauchen,gastar algo,,
 entsorgen,deshechar o tirar algo,,
 begrenzen,restringir algo,,
-belegen,demonstrar algo,,
+belegen,reservar o ocupar,,
 achten_auf,fijarse en algo,,
 sich_aengstigen_um,acojonarse de algo,,
 an-kommen_auf,depender de algo para decision,,
@@ -172,7 +172,7 @@ sich_wehren_gegen,oponerse a algo,,
 um_wetten_mit,apostarse algo con alguien,,
 sich_wundern_ueber,sorprenderse de algo,,
 zu-gehen_auf,acercarse a alguien o algo,,
-von_zeugen,poner algo de manifiesto,,
+zeugen_von,poner algo de manifiesto,,
 an-geben,show off o vender humo,,
 verhandeln,negociar,,
 vorhaben,planear algo,,
@@ -198,7 +198,7 @@ pfeifen,pitar o silbar,,
 reiten,montar a caballo,,
 streichen,suprimir o quitar o pintar un pared,,
 weichen,obedecer,,
-meiden,huir de algo,,
+meiden,evitar a algo o alguien,,
 reiben,frotar algo,,
 schweigen,callar,,
 empfangen,recibir a algo o alguien,,
@@ -213,3 +213,4 @@ gaeren,fermentar,,
 schwoeren,jurar algo,,
 einschaetzen,evaluar a alguien o algo,,
 entlassen,echar a alguien del trabajo,,
+arbeiten_in,trabajar en algo (un proyecto),,

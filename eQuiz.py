@@ -31,8 +31,8 @@ class namen():
          self.dafa = df
 	 self.index = self.dafa.index
 
-     def randomindex(self, index):
-         self.items = np.random.choice(range(len(index)), len(index), replace=False)
+     def randomindex(self):
+         self.items = np.random.choice(range(len(self.index)), len(self.index), replace=False)
 
 class verben():
      def __init__(self, df):
@@ -54,7 +54,7 @@ class verben():
      def randomindex(self):
          self.items = np.random.choice(range(len(self.index)), len(self.index), replace=False)    
 
-class adjandadv():       
+class adjadvaus():       
      def __init__(self, df):
          df.columns = ['a', 'b']
          df['match'] = 0
@@ -74,8 +74,8 @@ class dfresults():
      def calculate(self):
          self.right = self.match.tolist()
          self.positive = self.right.count(1)
-         self.fraction = self.positive/self.num
-         self.percentage = (self.positive*100)/self.num
+	 self.fraction = format(1.0*self.positive/self.num, '.4f')
+         self.percentage = format((1.0*self.positive*100)/self.num, '.4f')
 
 
 #######################################################################################################
@@ -86,10 +86,10 @@ df = pd.read_csv(sys.argv[1], sep = ',')
 
 # Clasify questions by type of data
 if len(df.columns) == 2:
-    obje = "Adjektiv und adverbien"
+    obje = "Adjektiv adverbien und ausdruecke"
     print obje
     # Get words randomly order
-    mylist = adjandadv(df)
+    mylist = adjadvaus(df)
     mylist.randomindex()
     finaldata = mylist.dafa
     ran = mylist.items
@@ -148,9 +148,9 @@ elif len(df.columns) == 6:
                  print "Well done! You know the translation and the gender!"
                  finaldata.loc[i,'match'] = 1
              else:
-                     print "Wrong! Sorry, you have to learn also the gender of the Namen..."
+                 print "Wrong! Sorry, it was:",finaldata.location[i],"You have to learn also the gender of the Namen..."
         else:
-             print "Wrong! The answer was - %s -"%finaldata.a[i]
+             print "Wrong! The answer was:",finaldata.a[i],"in",finaldata.location[i]
     
 # Get results
 myres = dfresults(finaldata)
@@ -158,10 +158,10 @@ myres.calculate()
 words = str(myres.num)
 fract = str(myres.fraction)
 perce = str(myres.percentage)
-date = str(dt.datetime.now().date())
+date = str(dt.datetime.now())
 
 # Save the results of each quiz in results.csv
-fd = open('../results.csv','a')
+fd = open('results.csv','a')
 newrow = date+","+obje+","+words+","+fract+","+perce+"\n"
 fd.write(newrow)
 fd.close()
