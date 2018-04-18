@@ -10,6 +10,14 @@ import pandas as pd
 import argparse
 
 
+class SmartFormatter(argparse.HelpFormatter):
+
+    def _split_lines(self, text, width):
+        if text.startswith('R|'):
+            return text[2:].splitlines()  
+        # this is the RawTextHelpFormatter._split_lines
+        return argparse.HelpFormatter._split_lines(self, text, width)
+
 def transform_and_suffle_namen_split_input(data, num_samples):
     # transform splitted namen input data
     die = data.loc[:, ['eKuche', 'Unnamed: 1']].rename(columns={'eKuche': 'name', 'Unnamed: 1': 'meaning'})
@@ -141,7 +149,8 @@ def evaluate_user_answer_wortschatz(row):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Test your german knowledge")
+    parser = argparse.ArgumentParser(description="Test your german knowledge.", usage="\nUsage for quiz of names splitted by gender:\npython eQuiz.py -t namen_split -i path_to_your_csv.csv -n num_exercises\n\nUsage for quiz of names without splitting by gender:\npython eQuiz.py -t namen_wo_split -i path_to_your_csv.csv -n num_exercises\n\nUsage for quiz of verbs splitting by akusative or dative:\npython eQuiz.py -t verben_akk_dat -i path_to_your_csv.csv -n num_exercises\n\nUsage for quiz of verbs declination:\npython eQuiz.py -t verben_deklination -i path_to_your_csv.csv -n num_exercises\n\nUsage for quiz of simply vocabulary:\npython eQuiz.py -t wortschatz -i path_to_your_csv.csv -n num_exercises.", formatter_class=SmartFormatter)
+
     parser.add_argument('--task', choices=['namen_split', 'namen_wo_split', 'verben_akk_dat', 'verben_deklination',
                                            'wortschatz'])
     parser.add_argument('--input', help='./data/wortschatz.csv')
