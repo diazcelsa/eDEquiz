@@ -26,7 +26,7 @@ def transform_and_suffle_namen_split_input(data, num_samples):
     die['gender'] = 'die'
     der['gender'] = 'der'
     das['gender'] = 'das'
-    df_restructured = pd.concat([die, der, das], axis=0).dropna()
+    df_restructured = pd.concat([die, der, das], axis=0).dropna().reset_index(drop=True)
 
     # select and suffle input data
     selection = df_restructured.index.tolist()
@@ -41,10 +41,9 @@ def transform_and_suffle_namen_wo_split_input(data, num_samples):
     data['gender'] = data['Namen'].str.split(' ').apply(lambda x: "".join(x[0]))
     data['name'] = data['Namen'].str.split(' ').apply(lambda x: " ".join(x[1:]))
     data['gender'] = data['gender'].replace('e', 'die').replace('r', 'der').replace('s', 'das')
-    df_restructured = data.drop(['Namen'], axis=1)
+    df_restructured = data.drop(['Namen'], axis=1).reset_index(drop=True)
 
     # select and suffle input data
-    np.random.seed(0)
     selection = df_restructured.index.tolist()
     np.random.shuffle(selection)
     selection = selection[:num_samples]
@@ -58,7 +57,7 @@ def transform_and_suffle_verben_akk_dat_input(data, num_samples):
     dat = data.ix[:, ['Dativ', 'Unnamed: 3']].rename(columns={'Dativ': 'verb', 'Unnamed: 3': 'meaning'})
     akk['object'] = 'akk'
     dat['object'] = 'dat'
-    df_restructured = pd.concat([akk, dat], axis=0).dropna()
+    df_restructured = pd.concat([akk, dat], axis=0).dropna().reset_index(drop=True)
 
     # select and suffle input data
     selection = df_restructured.index.tolist()
@@ -79,7 +78,7 @@ def transform_and_suffle_starken_verben_input(data, num_samples):
     pres['zeit'] = '3_person_present'
     prae['zeit'] = '3_person_praeter'
     part['zeit'] = 'partII'
-    df_restructured = pd.concat([inf, pres, prae, part], axis=0).dropna()
+    df_restructured = pd.concat([inf, pres, prae, part], axis=0).dropna().reset_index(drop=True)
 
     # select and suffle input data
     selection = df_restructured.index.tolist()
@@ -92,7 +91,7 @@ def transform_and_suffle_starken_verben_input(data, num_samples):
 def transform_and_suffle_wortschatz_input(data, num_samples):
     # transform splitted namen input data
     columns = data.columns.tolist()
-    df_restructured = data.rename(columns={columns[0]: 'wort', columns[1]: 'meaning'})
+    df_restructured = data.rename(columns={columns[0]: 'wort', columns[1]: 'meaning'}).reset_index(drop=True)
 
     # select and suffle input data
     selection = df_restructured.index.tolist()
@@ -156,8 +155,15 @@ def main():
     parser.add_argument('--num', help='Number of elements in the quiz to test.')
 
     args = parser.parse_args()
-    input_data = pd.read_csv(args.input, sep="\t")
+    
     n_tests = int(args.num)
+    input_data = pd.read_csv(args.input)
+    np.random.seed(0)
+
+    if len(input_data.columns) > 1:
+        next
+    else:
+        input_data = pd.read_csv(args.input, sep="\t")
 
     if args.task == 'namen_split':
         df_selection = transform_and_suffle_namen_split_input(input_data, n_tests)
@@ -180,8 +186,8 @@ def main():
         results = df_selection.apply(lambda x: evaluate_user_answer_wortschatz(x), axis=1)
 
     print(
-        "You answer {} times correctly.\nThe percentage of correct answers is {}.".format(sum(results),
-                                                                                          sum(results) * 100 / args.num))
+        "You answer {} times correctly.\nThe percentage of correct answers is {}%.".format(sum(results),
+                                                                                          sum(results) * 100 / (n_tests * 4)))
 
 
 if __name__ == "__main__":
