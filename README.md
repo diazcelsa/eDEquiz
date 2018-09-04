@@ -1,6 +1,6 @@
 ### eDEquiz | Learn German Vocabulary that You Need
 
-The most boring part of learning a language is to memorize those large lists of vocabulary in order to reach the next level and finally feel fluid talking.
+The most boring part of learning a language is to memorize those large lists of vocabulary in order to reach the next level and finally feel fluent talking.
 
 There are tones of books focused on vocabulary learning. However, you can not choose the content of the vocabulary you want or need to learn. Furthermore, in those books, you can not train again and again as much times as you need.
 
